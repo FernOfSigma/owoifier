@@ -18,11 +18,11 @@
 
 import sys
 
-from .interface import argparser
+from .interface import argparser, Namespace
 from ..owoifier import owoify
 
 
-def handle_text(args):
+def handle_text(args: Namespace) -> None:
     """Handle arguments for text input."""
     print(owoify(
         args.text,
@@ -30,7 +30,7 @@ def handle_text(args):
         suffix=args.add_suffix
     ))
 
-def handle_file(args):
+def handle_file(args: Namespace) -> None:
     """Handle arguments for file input."""
     try:
         with open(args.input_file, encoding="utf-8") as file:
@@ -40,8 +40,7 @@ def handle_file(args):
         print("Could not decode file as UTF-8.")
         sys.exit(1)
 
-def main():
-    """This was funny in my head."""
+def main() -> None:
     args = argparser.parse_args()
     if args.text is not None:
         args.text = " ".join(args.text)

@@ -19,7 +19,8 @@
 from argparse import (
     ArgumentParser,
     ArgumentTypeError,
-    RawDescriptionHelpFormatter
+    RawDescriptionHelpFormatter,
+    Namespace
 )
 import os.path as path
 

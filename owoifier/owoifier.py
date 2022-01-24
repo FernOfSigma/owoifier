@@ -1,3 +1,19 @@
+# Copyright (C) 2021 FernOfSigma.
+
+# This file is part of owoifier.
+
+# owoifier is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+
+# owoifier is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License along with
+# owoifer. If not, see <https://www.gnu.org/licenses/>.
+
 """OwO what's this?"""
 
 import random
@@ -16,7 +32,7 @@ MAPPINGS = [
     ["ove", "uv"]
 ]
 
-def _extend_mapping(attr):
+def _extend_mapping(attr: str) -> None:
     for old in MAPPINGS:
         new = [getattr(i, attr)() for i in old]
         if new not in MAPPINGS:
@@ -25,28 +41,19 @@ def _extend_mapping(attr):
 _extend_mapping("upper")
 _extend_mapping("capitalize")
 
-def _pick(iterable, chance):
-    if 0 < chance <= 1 and random.random() <= chance:
-        return random.choice(iterable)
-    return
-
-def owoify(text, prefix_chance=0.0, suffix_chance=0.0):
+def owoify(text: str, prefix: bool=False, suffix: bool=False) -> str:
     """Translates English text to OwO.
-
-    Picks a random prefix or suffix when the chance is within 0.0 and 1.0.
-    Nothing is added when the chance is at 0.0. When the chance is at 1.0,
-    a prefix or suffix is always added.
 
     Parameters
     ----------
     text : str
-        Text that needs to be translated.
+        The string that needs to be translated.
 
-    prefix_chance : float, default 0.0
-        Chance to get a prefix. Prefixes are isabled by default.
+    prefix : bool, default False
+        Set whether to use a funny prefix. Disabled by default.
 
-    suffix_chance : float, default 0.0
-        Chance to get a suffix. Suffixes are disabled by default.
+    suffix : bool, default False
+        Set whether to use a funny suffix. Disabled by default.
 
     Returns
     -------
@@ -57,12 +64,10 @@ def owoify(text, prefix_chance=0.0, suffix_chance=0.0):
         if src in text:
             text = text.replace(src, dst)
 
-    prefix = _pick(PREFIXES, prefix_chance)
-    if prefix is not None:
-        text = f"{prefix} {text}"
+    if prefix is True:
+        text = f"{random.choice(PREFIXES)} {text}"
 
-    suffix = _pick(SUFFIXES, suffix_chance)
-    if suffix is not None:
-        text = f"{text} {suffix}"
+    if suffix is True:
+        text = f"{text} {random.choice(SUFFIXES)}"
 
     return text
