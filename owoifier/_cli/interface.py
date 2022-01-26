@@ -24,18 +24,14 @@ from argparse import (
 )
 import os.path as path
 
-from .. import (
-    __author__,
-    __description__,
-    __version__
-)
+from .. import __version__
 
 
 argparser = ArgumentParser(
     formatter_class=RawDescriptionHelpFormatter,
-    description=__description__,
+    description="Translates English text into OwO using magic.",
     epilog=(
-        f"Copyright (C) 2021 {__author__}.\n"
+        f"Copyright (C) 2021 FernOfSigma.\n"
         "This program is licensed under GNU GPL version 3 or later "
         "<https://gnu.org/licenses/gpl.html>. "
         "There is NO WARRANTY, to the extent permitted by law."
