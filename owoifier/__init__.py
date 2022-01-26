@@ -18,4 +18,4 @@ from .owoifier import owoify
 
 
 __all__ = ["owoify"]
-__version__ = "0.1.2"
+__version__ = "0.1.0"
