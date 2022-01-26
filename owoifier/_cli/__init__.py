@@ -16,9 +16,10 @@
 
 """Parses the arguments and outputs result."""
 
+from argparse import Namespace
 import sys
 
-from .interface import argparser, Namespace
+from .interface import argparser
 from ..owoifier import owoify
 
 
