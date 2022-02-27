@@ -28,7 +28,13 @@ from .. import __version__
 
 argparser = ArgumentParser(
     formatter_class=RawDescriptionHelpFormatter,
-    description="Translates English text into OwO using magic.",
+    description=(
+        "Translates English text into OwO using magic.\n"
+        "\n"
+        "Reads from stdin when invoked with no arguments.  Text can also "
+        "be supplied from the command line through the -t argument, or "
+        "from a text file through the -i argument."
+    ),
     epilog=(
         f"Copyright (C) 2021 FernOfSigma.\n"
         "This program is licensed under GNU GPL version 3 or later "
@@ -40,7 +46,7 @@ argparser = ArgumentParser(
 )
 
 # Mutually exclusive argument group for types of input data.
-mandatory = argparser.add_mutually_exclusive_group(required=True)
+mandatory = argparser.add_mutually_exclusive_group(required=False)
 
 def file(file_path: str) -> str:
     """Argument type for an existing file."""

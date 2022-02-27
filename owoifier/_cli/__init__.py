@@ -41,6 +41,11 @@ def handle_file(args: Namespace) -> None:
         print("Could not decode file as UTF-8.")
         sys.exit(1)
 
+def handle_stdin(args: Namespace) -> None:
+    """Handle arguments for standard input."""
+    args.text = sys.stdin.read()
+    handle_text(args)
+
 def main() -> None:
     args = argparser.parse_args()
     if args.text is not None:
@@ -48,3 +53,5 @@ def main() -> None:
         handle_text(args)
     elif args.input_file is not None:
         handle_file(args)
+    else:
+        handle_stdin(args)
