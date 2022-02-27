@@ -35,7 +35,7 @@ def handle_file(args: Namespace) -> None:
     """Handle arguments for file input."""
     try:
         with open(args.input_file, encoding="utf-8") as file:
-            args.text = file.read()
+            args.text = file.read().rstrip()
             handle_text(args)
     except UnicodeDecodeError:
         print("Could not decode file as UTF-8.")
@@ -43,7 +43,7 @@ def handle_file(args: Namespace) -> None:
 
 def handle_stdin(args: Namespace) -> None:
     """Handle arguments for standard input."""
-    args.text = sys.stdin.read()
+    args.text = sys.stdin.read().rstrip()
     handle_text(args)
 
 def main() -> None:
