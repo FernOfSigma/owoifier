@@ -43,8 +43,13 @@ def handle_file(args: Namespace) -> None:
 
 def handle_stdin(args: Namespace) -> None:
     """Handle arguments for standard input."""
-    args.text = sys.stdin.read().rstrip()
-    handle_text(args)
+    try:
+        args.text = sys.stdin.read().rstrip()
+        handle_text(args)
+    except BrokenPipeError:
+        # might happen when piping output to a pager,
+        # but it is harmless
+        pass
 
 def main() -> None:
     args = argparser.parse_args()
