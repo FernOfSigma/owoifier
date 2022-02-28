@@ -46,7 +46,7 @@ argparser = ArgumentParser(
 )
 
 # Mutually exclusive argument group for types of input data.
-mandatory = argparser.add_mutually_exclusive_group(required=False)
+input_args = argparser.add_mutually_exclusive_group(required=False)
 
 def file(file_path: str) -> str:
     """Argument type for an existing file."""
@@ -56,13 +56,13 @@ def file(file_path: str) -> str:
         return path.normpath(file_path)
     raise ArgumentTypeError(f"{file_path} is not a file.")
 
-mandatory.add_argument(
+input_args.add_argument(
     "-i", "--input-file",
     metavar="FILE", type=file,
     help="path to text file that needs to be translated"
 )
 
-mandatory.add_argument(
+input_args.add_argument(
     "-t", "--text",
     metavar="TEXT", nargs="+",
     help="text that needs to be translated"
