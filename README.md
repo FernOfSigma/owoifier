@@ -11,4 +11,14 @@ The basic usage is as follows:
 $ owoifier -t "Hello world!"
 Hewwo wowwd!
 ```
+You can also pipe stuff to `owoifier`:
+```
+$ fortune | owoifier
+NYANCY!!  Why is evewything WED?!
+$ git status | owoifier -p -s
+*nuzzles* On bwanch main
+Youw bwanch is up to date with 'owigin/main'.
+
+nyothing to commit, wowking twee cwean ^w^
+```
 For more information about the accepted arguments, run `owoifier --help`.
